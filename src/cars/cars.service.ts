@@ -71,4 +71,8 @@ export class CarsService {
     }
     return car;
   }
+
+  populateCars(cars: Car[]): void {
+    this.cars = cars;
+  }
 }
