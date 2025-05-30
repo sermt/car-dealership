@@ -13,6 +13,7 @@ import {
 import { Car } from './interfaces/car.interface';
 import { CarsService } from './cars.service';
 import { CreateCarDto } from './dtos/create-car.dto';
+import { UpdateCarDto } from './dtos/update-car.dto';
 
 @Controller('cars')
 export class CarsController {
@@ -34,8 +35,11 @@ export class CarsController {
   }
 
   @Patch(':id')
-  updateCar(@Body() car: Car): void {
-    return this.carsService.createCar(car);
+  updateCar(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() carData: UpdateCarDto,
+  ): void {
+    return this.carsService.updateCar(id, carData);
   }
 
   @Delete(':id')
